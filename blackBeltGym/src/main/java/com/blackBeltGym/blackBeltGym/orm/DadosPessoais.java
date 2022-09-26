@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class DadosPessoais {
 
     private String cpf;
-    private String fistName;
+    private String firstName;
     private String lastName;
     private String telefone;
     private String email;
@@ -18,10 +18,34 @@ public class DadosPessoais {
 
     public DadosPessoais(String cpf, String fistName, String lastName, String telefone, String email, LocalDate dataDeNascimento) {
         this.cpf = cpf;
-        this.fistName = fistName;
+        this.firstName = fistName;
         this.lastName = lastName;
         this.telefone = telefone;
         this.email = email;
+        this.dataDeNascimento = dataDeNascimento;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setFistName(String fistName) {
+        this.firstName = fistName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
 
@@ -30,7 +54,7 @@ public class DadosPessoais {
     }
 
     public String getFistName() {
-        return fistName;
+        return firstName;
     }
 
     public String getLastName() {
@@ -53,7 +77,7 @@ public class DadosPessoais {
     public String toString() {
         return "DadosPessoais{" +
                 "cpf='" + cpf + '\'' +
-                ", fistName='" + fistName + '\'' +
+                ", fistName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", email='" + email + '\'' +

@@ -1,14 +1,16 @@
 package com.blackBeltGym.blackBeltGym.service;
 
 import com.blackBeltGym.blackBeltGym.orm.Cliente;
+import com.blackBeltGym.blackBeltGym.orm.DadosPessoais;
+import com.blackBeltGym.blackBeltGym.orm.Modalidade;
 import com.blackBeltGym.blackBeltGym.repository.ClienteRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 class RecepcaoServiceTest {
@@ -17,23 +19,46 @@ class RecepcaoServiceTest {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     ClienteRepository clienteRepository;
+
     @Test
-    public void iniciar(Scanner scanner){
-        while(system){
-            System.out.println("Qual ação deseja executar?");
-            System.out.println("1 - Visualizar");
+    public void matricula() {
+        String cpf = "123123";
+
+        String primeiroNome = "Pedro";
+
+        String ultimoNome = "Carvalho";
+
+        String telefone = "989898";
+
+        String email = "sfgafgafg";
+
+        String dataNascimento = "11/08/1992";
+
+        String nivelAtividade = "fasfafa";
+
+        LocalDate dataMatricula = LocalDate.now();
+
+        DadosPessoais dadosPessoais = new DadosPessoais();
+        dadosPessoais.setCpf(cpf);
+        dadosPessoais.setFistName(primeiroNome);
+        dadosPessoais.setLastName(ultimoNome);
+        dadosPessoais.setTelefone(telefone);
+        dadosPessoais.setEmail(email);
+        dadosPessoais.setDataDeNascimento(LocalDate.parse(dataNascimento, formatter));
 
 
-            int action = scanner.nextInt();
+        Modalidade musculacao = new Modalidade();
+        musculacao.setDescricao("Musculacao");
+        musculacao.setLocal("Sala terceiro andar");
+        List<Modalidade> modalidades = new ArrayList<>();
+        modalidades.add(musculacao);
 
-            switch(action){
-                case 1: visualizar();
-                    break;
+        Cliente cliente = new Cliente(dadosPessoais, nivelAtividade, dataMatricula, modalidades);
 
-            }
-
-        }
+        clienteRepository.save(cliente);
+        System.out.println("Cliente matriculado");
     }
+
 
     @Test
     public void visualizar(){

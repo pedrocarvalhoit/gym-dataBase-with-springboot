@@ -1,6 +1,9 @@
 package com.blackBeltGym.blackBeltGym.orm;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,7 +18,8 @@ public class Modalidade {
     private String local;
     @ManyToMany(mappedBy = "modalidade", fetch = FetchType.EAGER)
     private List<Cliente> cliente;
-    @ManyToMany
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "modalidades_com_professores",
             joinColumns = {@JoinColumn(name = "fk_modalidade")  },
@@ -26,7 +30,7 @@ public class Modalidade {
     public Modalidade() {
     }
 
-    public Modalidade(String descricao, String local, List<Cliente> cliente, List<Professor> professor) {
+    public Modalidade(String descricao, String local, List<Professor> professor) {
         this.descricao = descricao;
         this.local = local;
         this.cliente = cliente;

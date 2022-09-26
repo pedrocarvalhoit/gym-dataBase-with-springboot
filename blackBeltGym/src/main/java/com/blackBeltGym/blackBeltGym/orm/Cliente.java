@@ -20,7 +20,7 @@ public class Cliente {
     private LocalDate dataMatricula;
 
     @Fetch(FetchMode.SELECT)
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     //Cria a tabela que irá conter os dois itens relacionados
     @JoinTable(
             name = "clientes_com_modalidade",
